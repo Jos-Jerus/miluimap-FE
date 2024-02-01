@@ -1,0 +1,31 @@
+<!-- add_soldier.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="add.css" />
+    <title>Add Soldier</title>
+</head>
+<body>
+    <h1>Add Soldier</h1>
+    <!-- Soldier details form goes here -->
+    <form id="soldierForm">
+        <!-- Form fields for soldier details -->
+        <label for="city">City:</label>
+        <input type="text" id="city" name="city" required>
+        <br>
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address" required>
+        <br>
+        <label for="googleMapsLink">Google Maps Link:</label>
+        <input type="text" id="googleMapsLink" name="googleMapsLink" required>
+        <br>
+        <!-- Additional form fields if needed -->
+        <br>
+        <button type="button" onclick="submitSoldier()">Submit Soldier</button>
+    </form>
+
+    <script src="add.js"></script>
+</body>
+</html>

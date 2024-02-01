@@ -1,0 +1,23 @@
+/* styles.css for main map page */
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#map {
+    height: 80vh;
+}
+
+a {
+    display: block;
+    margin: 10px;
+    text-align: center;
+    text-decoration: none;
+    color: #3498db;
+    font-weight: bold;
+}
+
+a:hover {
+    color: #2980b9;
+}
