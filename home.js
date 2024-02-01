@@ -1,4 +1,4 @@
-// script.js
+// home.js
 
 document.addEventListener('DOMContentLoaded', () => {
     const map = L.map('map').setView([31.7767, 35.2345], 8); // Initial map center
@@ -38,6 +38,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     .bindPopup(`<b>ID:</b> ${business.id}<br>Coordinates: ${business.lat}, ${business.lon}<br>City: ${business.city}`)
                     .on('click', () => showPopupDetails(business));
             });
+
+            // Populate city filter dropdown
+            populateCityFilter(soldierBusinesses);
         })
         .catch(error => {
             console.error('Error fetching data:', error);
@@ -62,5 +65,49 @@ document.addEventListener('DOMContentLoaded', () => {
             .catch(error => {
                 console.error('Error fetching details:', error);
             });
+    }
+
+    function populateCityFilter(soldierBusinesses) {
+        const cities = Array.from(new Set(soldierBusinesses.map(business => business.city)));
+
+        const select = document.createElement('select');
+        select.id = 'cityFilter';
+        select.addEventListener('change', () => filterByCity(select.value));
+
+        const defaultOption = document.createElement('option');
+        defaultOption.text = 'All Cities';
+        defaultOption.value = '';
+        select.appendChild(defaultOption);
+
+        cities.forEach(city => {
+            const option = document.createElement('option');
+            option.text = city;
+            option.value = city;
+            select.appendChild(option);
+        });
+
+        const filterContainer = document.createElement('div');
+        filterContainer.className = 'filter-container';
+        filterContainer.appendChild(document.createTextNode('Filter by City: '));
+        filterContainer.appendChild(select);
+
+        document.body.insertBefore(filterContainer, document.getElementById('map'));
+    }
+
+    function filterByCity(city) {
+        const markers = document.querySelectorAll('.leaflet-marker-icon');
+
+        markers.forEach(marker => {
+            marker.style.display = 'block';
+        });
+
+        if (city) {
+            markers.forEach(marker => {
+                const business = soldierBusinesses.find(b => b.id === marker.dataset.id);
+                if (business && business.city !== city) {
+                    marker.style.display = 'none';
+                }
+            });
+        }
     }
 });

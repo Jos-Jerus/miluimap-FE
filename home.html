@@ -1,4 +1,4 @@
-<!-- index.html -->
+<!-- home.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,9 +10,15 @@
 </head>
 <body>
     <div id="map"></div>
+    <div class="filter-container">
+        <label for="cityFilter">Filter by City:</label>
+        <select id="cityFilter" onchange="filterByCity(this.value)">
+            <option value="">All Cities</option>
+            <!-- Add options dynamically using JavaScript -->
+        </select>
+    </div>
     <a href="add.html">Add Soldier</a>
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="home.js"></script>
 </body>
 </html>
-
